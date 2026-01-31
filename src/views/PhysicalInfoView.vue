@@ -15,7 +15,7 @@
           v-model.number="height"
           label="키"
           type="number"
-          placeholder="165"
+          placeholder="165.0"
           unit="cm"
         />
         <FormInput
@@ -23,7 +23,7 @@
           v-model.number="weight"
           label="몸무게"
           type="number"
-          placeholder="50"
+          placeholder="50.0"
           unit="kg"
         />
       </div>
