@@ -5,7 +5,7 @@ import mascotImage from '@/assets/cat-finish.svg'
 const router = useRouter()
 
 const handleStop = () => {
-  router.push('/running-result')
+  router.push('/main')
 }
 </script>
 
