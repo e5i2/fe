@@ -51,6 +51,11 @@ const router = createRouter({
             path: '/welcome',
             name: 'welcome',
             component: () => import('../views/WelcomeView.vue')
+        },
+        {
+            path: '/running-info',
+            name: 'running-info',
+            component: () => import('../views/RunningInfoView.vue')
         }
     ]
 })
