@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useRunningStore } from '@/stores/running';
-import MapContainer from '../components/MapContainer.vue';
+import MapDisplay from '../components/MapDisplay.vue';
 import PathCarousel from '../components/PathCarousel.vue';
 import DistanceControl from '../components/DistanceControl.vue';
 import BaseButton from '../components/BaseButton.vue';
@@ -10,15 +10,23 @@ import BaseButton from '../components/BaseButton.vue';
 const router = useRouter();
 const store = useRunningStore();
 
-const startRunning = () => {
-  if (!store.targetDistance || !store.selectedPath) {
+const buttonLabel = computed(() => {
+  return store.isLocationFixed ? '러닝 시작하기' : '위치 고정하기';
+});
+
+const handleButtonClick = () => {
+  if (!store.isLocationFixed) {
+    // Step 1: Fix location
+    store.toggleLocationFixed();
+  } else {
+    // Step 2: Start running
+    if (!store.targetDistance || !store.selectedPath) {
       alert("거리와 경로를 확인해주세요.");
       return;
+    }
+    store.startRun();
+    router.push('/running-info');
   }
-  
-  store.startRun();
-  // TODO: Navigate to active running view (e.g., /running)
-  alert(`러닝을 시작합니다! \n목표: ${store.targetDistance}km \n경로: ${store.selectedPath}`);
 };
 </script>
 
@@ -34,7 +42,7 @@ const startRunning = () => {
       <div class="content-wrapper">
         <div class="content-card">
           <div class="map-area">
-            <MapContainer />
+            <MapDisplay />
             <div class="search-bar">위치 찾기</div>
           </div>
           <div class="carousel-area">
@@ -47,9 +55,9 @@ const startRunning = () => {
       </div>
       <div class="controls-section">
         <BaseButton 
-          label="러닝 시작하기" 
+          :label="buttonLabel" 
           variant="primary" 
-          @click="startRunning"
+          @click="handleButtonClick"
           class="start-btn"
         />
       </div>

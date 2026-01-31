@@ -92,6 +92,7 @@ const handleStop = () => {
   </div>
 </template>
 
+<<<<<<< HEAD
 <style scoped>
 .running-info-container {
   display: flex;
@@ -225,5 +226,91 @@ const handleStop = () => {
   font-size: 18px;
   font-weight: 700;
   box-shadow: 0 4px 15px rgba(0, 255, 127, 0.3);
+=======
+<script setup>
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useRunningStore } from '@/stores/running';
+import BaseButton from '@/components/BaseButton.vue';
+
+const router = useRouter();
+const store = useRunningStore();
+
+const pathMap = {
+  'cat': '고양이 경로',
+  'dog': '강아지 경로',
+  'duck': '오리 경로'
+};
+
+const pathName = computed(() => pathMap[store.selectedPath] || store.selectedPath);
+
+const formattedStartTime = computed(() => {
+  if (!store.startTime) return '-';
+  return new Date(store.startTime).toLocaleTimeString('ko-KR');
+});
+
+const goBack = () => {
+  router.push('/main');
+};
+</script>
+
+<style scoped>
+.running-info-container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.running-info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+}
+
+.button-container {
+  padding: 16px 0 40px 0;
+  margin-top: auto;
+>>>>>>> a89817ef25f5c7c0a020c5d5ea58702e2deb17f6
 }
 </style>

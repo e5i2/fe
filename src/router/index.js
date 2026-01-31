@@ -8,6 +8,7 @@ import RunningInfoView from '../views/RunningInfoView.vue'
 import RunningInfoView from '../views/RunningInfoView.vue'
 
 const router = createRouter({
+<<<<<<< HEAD
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -55,6 +56,60 @@ const router = createRouter({
       component: RunningInfoView
     }
   ]
+=======
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes: [
+        {
+            path: '/',
+            redirect: '/login'
+        },
+        {
+            path: '/home',
+            name: 'home',
+            component: HomeView
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: LoginView
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: () => import('../views/SignupView.vue')
+        },
+        {
+            path: '/main',
+            name: 'main',
+            component: () => import('../views/MainView.vue')
+        },
+        {
+            path: '/userinfo',
+            name: 'userinfo',
+            component: UserInfoView
+        },
+        {
+            path: '/gender',
+            name: 'gender',
+            component: GenderSelectionView
+        },
+        {
+            path: '/physical',
+            name: 'physical',
+            component: PhysicalInfoView
+        },
+        {
+            path: '/welcome',
+            name: 'welcome',
+            component: () => import('../views/WelcomeView.vue')
+        },
+        {
+            path: '/running-info',
+            name: 'running-info',
+            component: () => import('../views/RunningInfoView.vue')
+        }
+    ]
+>>>>>>> a89817ef25f5c7c0a020c5d5ea58702e2deb17f6
 })
 
 export default router
