@@ -1,64 +1,65 @@
-<script setup>
-defineProps({
-  variant: {
-    type: String,
-    default: 'primary',
-    validator: (value) => ['primary', 'gray'].includes(value)
-  },
-  label: {
-    type: String,
-    required: true
-  }
-})
-</script>
-
 <template>
-  <button :class="['base-btn', `btn-${variant}`]">
-    {{ label }}
+  <button
+    :class="['base-button', `btn-${variant}`]"
+    :disabled="disabled"
+    @click="handleClick"
+  >
+    <slot></slot>
   </button>
 </template>
 
+<script setup>
+const props = defineProps({
+  variant: {
+    type: String,
+    default: 'primary',
+    validator: (value) => ['primary', 'secondary', 'gray'].includes(value)
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits(['click'])
+
+const handleClick = (event) => {
+  if (!props.disabled) {
+    emit('click', event)
+  }
+}
+</script>
+
 <style scoped>
-.base-btn {
+.base-button {
   width: 100%;
   padding: 16px;
-  font-size: 16px;
-  font-weight: 600;
   border: none;
   border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
-  color: #000;
 }
 
-.base-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.base-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Variants */
+/* primary */
 .btn-primary {
-  background-color: var(--color-primary);
+  background-color: #4ade80;
+  color: white;
 }
 
-.btn-primary:hover {
-  /* Slightly darker green or reuse same color with opacity change if preferred. 
-     Using a hardcoded slight darken as placeholder or keeping same */
-  filter: brightness(0.95);
+.btn-primary:hover:not(:disabled) {
+  background-color: #22c55e;
 }
 
-.btn-gray {
-  background-color: var(--color-gray);
-  color: #333; /* Darker text for gray button */
+/* secondary */
+.btn-secondary {
+  background-color: #e5e5e5;
+  color: #666;
 }
 
-.btn-gray:hover {
-  filter: brightness(0.95);
+.btn-secondary:hover:not(:disabled) {
+  background-color: #d4d4d4;
 }
-</style>
+
+/* gray (from*
