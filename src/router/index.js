@@ -10,36 +10,37 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-{
-  path: '/',
-  redirect: '/login'
-},
-{
-  path: '/login',
-  name: 'login',
-  component: LoginView
-},
-{
-  path: '/home',
-  name: 'home',
-  component: HomeView
-},
-{
-  path: '/userinfo',
-  name: 'userinfo',
-  component: UserInfoView
-},
-{
-  path: '/gender',
-  name: 'gender',
-  component: GenderSelectionView
-},
-{
-  path: '/physical',
-  name: 'physical',
-  component: PhysicalInfoView
-}
-
+            redirect: '/login'
+        },
+        {
+            path: '/home',
+            name: 'home',
+            component: HomeView
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: LoginView
+        },
+        {
+            path: '/main',
+            name: 'main',
+            component: () => import('../views/MainView.vue')
+        },
+        {
+            path: '/userinfo',
+            name: 'userinfo',
+            component: UserInfoView
+        },
+        {
+            path: '/gender',
+            name: 'gender',
+            component: GenderSelectionView
+        },
+        {
+            path: '/physical',
+            name: 'physical',
+            component: PhysicalInfoView
         }
     ]
 })
