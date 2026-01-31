@@ -1,15 +1,19 @@
 <template>
-  <button :class="['base-button', variant]" :disabled="disabled" @click="handleClick">
+  <button
+    :class="['base-button', `btn-${variant}`]"
+    :disabled="disabled"
+    @click="handleClick"
+  >
     <slot></slot>
   </button>
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   variant: {
     type: String,
-    default: 'primary', // primary, secondary
-    validator: (value) => ['primary', 'secondary'].includes(value)
+    default: 'primary',
+    validator: (value) => ['primary', 'secondary', 'gray'].includes(value)
   },
   disabled: {
     type: Boolean,
@@ -20,7 +24,9 @@ defineProps({
 const emit = defineEmits(['click'])
 
 const handleClick = (event) => {
-  emit('click', event)
+  if (!props.disabled) {
+    emit('click', event)
+  }
 }
 </script>
 
@@ -31,31 +37,29 @@ const handleClick = (event) => {
   border: none;
   border-radius: 8px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.base-button.primary {
+/* primary */
+.btn-primary {
   background-color: #4ade80;
   color: white;
 }
 
-.base-button.primary:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled) {
   background-color: #22c55e;
 }
 
-.base-button.secondary {
+/* secondary */
+.btn-secondary {
   background-color: #e5e5e5;
   color: #666;
 }
 
-.base-button.secondary:hover:not(:disabled) {
+.btn-secondary:hover:not(:disabled) {
   background-color: #d4d4d4;
 }
 
-.base-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-</style>
+/* gray (from*

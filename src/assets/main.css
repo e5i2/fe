@@ -23,11 +23,15 @@
 
 /* semantic color variables for this project */
 :root {
+  --color-primary: #01FD5C;
+  --color-secondary: #E9FFF1;
+  --color-gray: #EAEAEA;
+
   --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
+  --color-background-soft: var(--color-secondary);
   --color-background-mute: var(--vt-c-white-mute);
 
-  --color-border: var(--vt-c-divider-light-2);
+  --color-border: var(--color-gray);
   --color-border-hover: var(--vt-c-divider-light-1);
 
   --color-heading: var(--vt-c-text-light-1);
