@@ -1,13 +1,40 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import { login } from '@/services/auth';
 import BaseButton from '@/components/BaseButton.vue';
 
 const router = useRouter();
 
-const handleGoogleLogin = () => {
-    // Logic for Google login can be added here later
-    console.log("Google Login Clicked");
-    router.push('/main');
+const handleGoogleLogin = async () => {
+    try {
+        router.push({ 
+                path: '/signup', 
+                query: { email: "stella223" } 
+            });
+        const idToken = import.meta.env.VITE_GOOGLE_ID_TOKEN;
+        if (!idToken) {
+            console.error('Missing VITE_GOOGLE_ID_TOKEN');
+            alert('구글 ID 토큰 설정이 필요합니다.');
+            return;
+        }
+
+        console.log("token", idToken);
+        const data = await login(idToken);
+        console.log('Login successful', data);
+        
+        // Route based on registration status
+        if (data.isRegister === false) {
+            router.push({ 
+                path: '/signup', 
+                query: { email: data.email } 
+            });
+        } else {
+            router.push('/main');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert(`로그인 중 오류가 발생했습니다: ${error.message}`);
+    }
 };
 </script>
 

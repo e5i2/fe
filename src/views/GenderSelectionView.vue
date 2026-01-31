@@ -1,40 +1,36 @@
 <template>
   <div class="gender-selection-container">
     <div class="gender-selection-content">
-      <!-- Header -->
-      <div class="header">
-        <h1 class="title">사용자 정보</h1>
-        <div class="progress-container">
-          <div class="progress-bar" style="width: 66%"></div>
-        </div>
-      </div>
+      <FormHeader title="사용자 정보" />
+      <ProgressIndicator :current-step="2" />
 
-      <!-- Question Section -->
       <div class="question-section">
         <h2 class="question">성별이 어떻게 되시나요?</h2>
-        <p class="subtitle">의무에 공개하지 않아요</p>
+        <p class="subtitle">외부에 공개하지 않아요</p>
       </div>
 
-      <!-- Button Container -->
       <div class="button-container">
-        <BaseButton variant="primary" @click="selectGender('male')">남성</BaseButton>
-        <BaseButton variant="secondary" @click="selectGender('female')">여성</BaseButton>
+        <BaseButton variant="primary" @click="selectGender('MALE')">남성</BaseButton>
+        <BaseButton variant="secondary" @click="selectGender('FEMALE')">여성</BaseButton>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-import BaseButton from '../components/BaseButton.vue'
+import { useRouter } from 'vue-router';
+import { useSignupStore } from '@/stores/signup';
+import FormHeader from '@/components/FormHeader.vue';
+import ProgressIndicator from '@/components/ProgressIndicator.vue';
+import BaseButton from '@/components/BaseButton.vue';
 
-const router = useRouter()
+const router = useRouter();
+const signupStore = useSignupStore();
 
 const selectGender = (gender) => {
-  console.log('Selected gender:', gender)
-  // Add your navigation or data handling logic here
-  // router.push('/next-page')
-}
+  signupStore.setGender(gender);
+  router.push('/physical');
+};
 </script>
 
 <style scoped>
@@ -55,36 +51,6 @@ const selectGender = (gender) => {
   width: 100%;
 }
 
-/* Header */
-.header {
-  margin-top: 40px;
-  margin-bottom: 32px;
-  text-align: center;
-}
-
-.title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #000;
-  padding-bottom: 20px;
-}
-
-.progress-container {
-  width: 100%;
-  height: 4px;
-  background-color: #ECECEC;
-  border-radius: 2px;
-  margin-top: 10px;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: #00FF5E; /* Bright Green */
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-/* Question Section */
 .question-section {
   margin-bottom: 40px;
 }
@@ -102,12 +68,11 @@ const selectGender = (gender) => {
   font-weight: 400;
 }
 
-/* Button Container */
 .button-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-top: auto;
-  padding-bottom: 40px;
+  padding-bottom: 100px;
 }
 </style>
