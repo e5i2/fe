@@ -81,7 +81,7 @@ const handleClick = (event) => {
   background-color: #d4d4d4;
 }
 
-:disabled {
+.base-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
