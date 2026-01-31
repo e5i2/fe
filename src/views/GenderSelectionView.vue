@@ -10,8 +10,8 @@
       </div>
 
       <div class="button-container">
-        <BaseButton variant="primary" @click="selectGender('male')">남성</BaseButton>
-        <BaseButton variant="secondary" @click="selectGender('female')">여성</BaseButton>
+        <BaseButton variant="primary" @click="selectGender('MALE')">남성</BaseButton>
+        <BaseButton variant="secondary" @click="selectGender('FEMALE')">여성</BaseButton>
       </div>
     </div>
   </div>

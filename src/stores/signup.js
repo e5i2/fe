@@ -6,9 +6,9 @@ export const useSignupStore = defineStore('signup', () => {
     // State
     const email = ref('');
     const nickname = ref('');
-    const gender = ref('');
-    const height = ref(0);
-    const weight = ref(0);
+    const gender = ref('Male');
+    const height = ref(0.0);
+    const weight = ref(0.0);
 
     // Getters
     const isComplete = computed(() => {
