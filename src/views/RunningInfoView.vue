@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import mascotImage from '@/assets/mascot.png'
+import mascotImage from '@/assets/cat-finish.svg'
 
 const router = useRouter()
 
@@ -145,8 +145,8 @@ const handleStop = () => {
 .mascot-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+  object-fit: contain;
+  border-radius: 0;
 }
 
 .page-title {

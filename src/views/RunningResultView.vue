@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import badgeImage from '@/assets/running_finish_badge.png'
+import badgeImage from '@/assets/cat-finish.svg'
 
 const router = useRouter()
 
@@ -167,10 +167,8 @@ const handleHome = () => {
 .achievement-badge {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 50%; /* Ensure it's perfectly circular */
-  box-shadow: 0 10px 30px rgba(0, 255, 127, 0.3);
-  background-color: black; /* Solid background for the badge */
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 255, 127, 0.4));
 }
 
 .result-message {
