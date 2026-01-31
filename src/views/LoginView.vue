@@ -1,9 +1,13 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import BaseButton from '@/components/BaseButton.vue';
+
+const router = useRouter();
 
 const handleGoogleLogin = () => {
     // Logic for Google login can be added here later
     console.log("Google Login Clicked");
+    router.push('/main');
 };
 </script>
 
