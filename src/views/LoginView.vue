@@ -1,4 +1,10 @@
 <script setup>
+import BaseButton from '@/components/BaseButton.vue';
+
+const handleGoogleLogin = () => {
+    // Logic for Google login can be added here later
+    console.log("Google Login Clicked");
+};
 </script>
 
 <template>
@@ -9,9 +15,11 @@
     </div>
     
     <div class="button-wrapper">
-      <button class="google-login-btn">
-        구글 로그인으로 시작
-      </button>
+      <BaseButton 
+        label="구글 로그인으로 시작" 
+        variant="primary" 
+        @click="handleGoogleLogin"
+      />
     </div>
   </div>
 </template>
@@ -52,30 +60,5 @@
 
 .button-wrapper {
   width: 100%;
-}
-
-.google-login-btn {
-  width: 100%;
-  padding: 16px;
-  background-color: var(--color-primary); /* Primary Green */
-  color: #000; /* Assuming black text based on contrast */
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px; /* Rounded corners */
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Basic shadow */
-  transition: all 0.2s ease;
-}
-
-.google-login-btn:hover {
-  background-color: #00e650; /* Slightly darker green or just rely on opacity/shadow */
-  transform: translateY(-2px); /* Lift effect */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deepened shadow */
-}
-
-.google-login-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>
