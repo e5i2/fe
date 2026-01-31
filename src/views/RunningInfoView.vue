@@ -168,15 +168,15 @@ onUnmounted(() => {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 32px;
   font-weight: 700;
   color: #000;
   margin: 0 0 4px 0;
 }
 
 .subtitle {
-  font-size: 14px;
-  color: #00FF5E;
+  font-size: 20px;
+  color: #8e9b92ff;
   margin: 0;
   font-weight: 500;
 }
@@ -184,7 +184,7 @@ onUnmounted(() => {
 /* Timer */
 .timer {
   text-align: center;
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 700;
   color: #000;
   padding: 16px 0;
@@ -208,13 +208,13 @@ onUnmounted(() => {
 }
 
 .stat-value {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   color: #000;
 }
 
 .stat-label {
-  font-size: 14px;
+  font-size: 24px;
   color: #666;
   font-weight: 500;
 }
