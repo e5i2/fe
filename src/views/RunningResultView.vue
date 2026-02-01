@@ -1,6 +1,9 @@
 <template>
   <div class="result-container">
     <div class="result-content">
+      <button class="share-btn" @click="handleShare">
+        <img :src="shareIconUrl" alt="Share" />
+      </button>
       <!-- Title with emojis -->
       <div class="title-section">
         <h1 class="title">🎉러닝이 끝났어요✨</h1>
@@ -8,9 +11,7 @@
 
       <!-- Path Icon -->
       <div class="icon-section">
-        <div class="icon-wrapper">
-          <img :src="pathIconSrc" alt="Path Icon" class="path-icon" />
-        </div>
+        <img :src="pathIconSrc" alt="Path Icon" class="path-icon" />
       </div>
 
       <!-- Completion Message -->
@@ -86,10 +87,26 @@ const finish = () => {
   store.resetLocationFixed();
   router.push('/badges');
 };
+
+const shareIconUrl = new URL('@/assets/paperplane.svg', import.meta.url).href;
+
+const handleShare = () => {
+  // Sharing logic placeholder
+  if (navigator.share) {
+    navigator.share({
+      title: 'Run! Picaso',
+      text: '나의 러닝 기록을 확인해보세요!',
+      url: window.location.href,
+    }).catch(console.error);
+  } else {
+    alert('결과 공유 기능이 이 브라우저에서는 지원되지 않습니다.');
+  }
+};
 </script>
 
 <style scoped>
 .result-container {
+  margin-top: 24px;
   min-height: 100vh;
   background: url('@/assets/congratulations.gif') no-repeat center center/cover;
   display: flex;
@@ -100,41 +117,28 @@ const finish = () => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 40px 16px;
+  padding: 48px 16px;
   max-width: 600px;
   margin: 0 auto;
   width: 100%;
 }
 
-/* Title Section */
 .title-section {
   text-align: center;
   margin-bottom: 24px;
 }
 
 .title {
-  font-size: 32px;
+  font-size: clamp(24px, 6vw, 32px);
   font-weight: 700;
   color: #000;
   margin: 0 0 8px 0;
 }
 
-.emoji-decoration {
-  font-size: 32px;
-}
-
-/* Icon Section */
 .icon-section {
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
-}
-
-.icon-wrapper {
-  background: white;
-  border-radius: 50%;
-  padding: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .path-icon {
@@ -143,16 +147,39 @@ const finish = () => {
   display: block;
 }
 
-/* Completion Message */
-.completion-message {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 32px 0;
+
+
+.share-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 1001; /* Above map and gradient */
+  padding: 8px;
 }
 
-/* Stats Grid */
+.share-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.completion-message {
+  text-align: center;
+  font-size: clamp(18px, 4.5vw, 24px);
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 24px 0;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -169,18 +196,17 @@ const finish = () => {
 }
 
 .stat-value {
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   font-weight: 700;
   color: #000;
 }
 
 .stat-label {
-  font-size: 24px;
+  font-size: clamp(14px, 3vw, 24px);
   color: #666;
   font-weight: 500;
 }
 
-/* Button */
 .button-container {
   padding: 16px 0;
   margin-top: auto;

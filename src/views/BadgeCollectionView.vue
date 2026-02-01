@@ -84,7 +84,7 @@ const goBack = () => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 40px 16px;
+  padding: 40px 40px;
   max-width: 600px;
   margin: 0 auto;
   width: 100%;

@@ -6,7 +6,7 @@
         <img :src="mapSrc" alt="Running Map" class="map-image" />
         <div class="map-gradient"></div>
         <div class="path-icon-overlay">
-          <img :src="pathIconSrc" alt="Path Icon" class="path-icon" />
+          <img :src="logoUrl" alt="Path Icon" class="path-icon" />
         </div>
       </div>
 
@@ -34,7 +34,7 @@
           <div class="stat-label">❤️ bpm</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">8.70</div>
+          <div class="stat-value">3.20</div>
           <div class="stat-label">⚡ km</div>
         </div>
         <div class="stat-item">
@@ -73,6 +73,8 @@ const pathIconMap = {
   'duck': new URL('@/assets/duck-finish.svg', import.meta.url).href
 };
 
+const logoUrl = new URL('@/assets/logo.svg', import.meta.url).href;
+
 const mapSrc = computed(() => {
   const pathMap = {
     'cat': new URL('@/assets/cat-map.svg', import.meta.url).href,
@@ -93,12 +95,10 @@ const formattedTimer = computed(() => {
 });
 
 const stopRunning = () => {
-  // Navigate to result page instead of stopping immediately
   router.push('/running-result');
 };
 
 onMounted(() => {
-  // Start timer
   timerInterval = setInterval(() => {
     elapsedSeconds.value++;
   }, 1000);
@@ -129,7 +129,6 @@ onUnmounted(() => {
   width: 100%;
 }
 
-/* Map Section */
 .map-section {
   position: relative;
   width: 100%;
@@ -143,15 +142,33 @@ onUnmounted(() => {
   object-fit: cover;
 }
 
+.fixed-path-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: auto;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.map-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.8), transparent);
+  pointer-events: none;
+}
+
 .path-icon-overlay {
   position: absolute;
   bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
-  border-radius: 50%;
-  padding: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: none;
 }
 
 .path-icon {
@@ -160,37 +177,34 @@ onUnmounted(() => {
   display: block;
 }
 
-/* Title Section */
 .title-section {
   text-align: center;
   padding: 24px 16px 16px;
 }
 
 .title {
-  font-size: 32px;
+  font-size: clamp(24px, 6vw, 32px);
   font-weight: 700;
   color: #000;
   margin: 0 0 4px 0;
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: clamp(14px, 3.5vw, 20px);
   color: #8e9b92ff;
   margin: 0;
   font-weight: 500;
 }
 
-/* Timer */
 .timer {
   text-align: center;
-  font-size: 52px;
+  font-size: clamp(40px, 12vw, 52px);
   font-weight: 700;
   color: #000;
-  padding: 16px 0;
+  padding: 12px 0;
   font-variant-numeric: tabular-nums;
 }
 
-/* Stats Grid */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -207,18 +221,17 @@ onUnmounted(() => {
 }
 
 .stat-value {
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   font-weight: 700;
   color: #000;
 }
 
 .stat-label {
-  font-size: 24px;
+  font-size: clamp(14px, 3vw, 24px);
   color: #666;
   font-weight: 500;
 }
 
-/* Button */
 .button-container {
   padding: 16px;
   margin-top: auto;

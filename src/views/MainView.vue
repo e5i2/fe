@@ -99,11 +99,11 @@ header {
 }
 
 .date-display {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
   opacity: 1;
   align-self: center; /* Center align date below logo */
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .badge-icon {
@@ -141,6 +141,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-left: 20px;
+  margin-right: 20px;
   min-height: 0; /* Important for nested flex scroll/sizing */
 }
 
@@ -152,19 +154,20 @@ main {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 24px 32px; /* Increased padding */
-  margin: 16px;
-  flex-grow: 1; /* Fill available space */
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  margin-top: -4px;
+  flex-grow: 0; /* Don't stretch indefinitely */
+  min-height: 400px;
 }
 
 .map-area {
   width: 100%;
-  flex-grow: 1; /* Fill container */
-  height: auto; /* Remove fixed height */
+  height: 300px; /* Specific height instead of flex-grow */
+  max-height: 40vh; /* Limit relative to viewport */
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  min-height: 200px; /* Ensure map has minimum visibility */
 }
 
 .distance-control {
