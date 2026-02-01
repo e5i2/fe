@@ -61,6 +61,11 @@ const router = createRouter({
             path: '/running-result',
             name: 'running-result',
             component: () => import('../views/RunningResultView.vue')
+        },
+        {
+            path: '/badges',
+            name: 'badges',
+            component: () => import('../views/BadgeCollectionView.vue')
         }
     ]
 })

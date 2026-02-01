@@ -7,10 +7,6 @@ const router = useRouter();
 
 const handleGoogleLogin = async () => {
     try {
-        router.push({ 
-                path: '/signup', 
-                query: { email: "stella223" } 
-            });
         const idToken = import.meta.env.VITE_GOOGLE_ID_TOKEN;
         if (!idToken) {
             console.error('Missing VITE_GOOGLE_ID_TOKEN');

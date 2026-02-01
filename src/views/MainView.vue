@@ -28,6 +28,10 @@ const handleButtonClick = () => {
     router.push('/running-info');
   }
 };
+
+const goToBadges = () => {
+  router.push('/badges');
+};
 </script>
 
 <template>
@@ -35,6 +39,9 @@ const handleButtonClick = () => {
     <header>
       <h1 class="header-logo">RUN!PICASO</h1>
       <div class="date-display">2026.02.01</div>
+      <button class="badge-icon" @click="goToBadges">
+        <img src="@/assets/rosette.svg" alt="Badges" />
+      </button>
     </header>
 
 
@@ -97,6 +104,28 @@ header {
   opacity: 1;
   align-self: center; /* Center align date below logo */
   margin-top: 8px;
+}
+
+.badge-icon {
+  position: absolute;
+  top: 40px;
+  right: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  transition: transform 0.2s;
+}
+
+.badge-icon:hover {
+  transform: scale(1.1);
+}
+
+.badge-icon img {
+  width: 100%;
+  height: 100%;
 }
 
 main {
