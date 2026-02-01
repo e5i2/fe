@@ -56,7 +56,7 @@ const badges = ref([
   { 
     id: 'duck', 
     icon: new URL('@/assets/duck-finish.svg', import.meta.url).href,
-    earned: true 
+    earned: false 
   },
   { id: 'locked1', earned: false },
   { id: 'locked2', earned: false },

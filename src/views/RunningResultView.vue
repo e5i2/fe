@@ -84,7 +84,7 @@ const completionMessage = computed(() => {
 const finish = () => {
   store.stopRun();
   store.resetLocationFixed();
-  router.push('/main');
+  router.push('/badges');
 };
 </script>
 

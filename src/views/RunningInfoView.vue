@@ -49,7 +49,7 @@
 
       <!-- Stop Button -->
       <div class="button-container">
-        <BaseButton variant="primary" @click="stopRunning" class="stop-btn">중단하기</BaseButton>
+        <BaseButton variant="primary" @click="stopRunning" class="stop-btn">종료하기</BaseButton>
       </div>
     </div>
   </div>

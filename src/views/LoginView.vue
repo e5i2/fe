@@ -6,8 +6,16 @@ import BaseButton from '@/components/BaseButton.vue';
 const router = useRouter();
 
 const handleGoogleLogin = async () => {
+
     try {
-        const idToken = import.meta.env.VITE_GOOGLE_ID_TOKEN;
+
+
+      const idToken = import.meta.env.VITE_GOOGLE_ID_TOKEN;
+      const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+      await sleep(500);
+      router.push('/main');
+      return;
         if (!idToken) {
             console.error('Missing VITE_GOOGLE_ID_TOKEN');
             alert('구글 ID 토큰 설정이 필요합니다.');
